@@ -4,6 +4,7 @@ import com.example.MonolitSpotify.repository.entity.UserProfile;
 import com.example.MonolitSpotify.utility.enums.State;
 import org.apache.catalina.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -176,6 +177,20 @@ public interface UserProfileRepository extends JpaRepository<UserProfile,Long> {
 
     List<UserProfile>findAllByResimUrlIsNull();
 
+    /**
+     *
+     * Spring data jpa kolaylık açısından kendi kelimelerini desteklesede daha karmasık sorgular ve
+     * yapılar için özel sorgu yazabilmemize de olanak tanımlamaktadır.
+     * Bu işlemler için 3 farklı yöntem vardır.
+     *
+     * 1-JPQL
+     * 2-HQL
+     * 3-NativeSQL
+     *
+     */
+
+    @Query("SELECT u from UserProfile u where u.resimUrl IS null  and u.userName=?1")
+    UserProfile egerkullanicininResmiYokIseVeAdiMuhammetIseBul(String UserName);
 
 
 

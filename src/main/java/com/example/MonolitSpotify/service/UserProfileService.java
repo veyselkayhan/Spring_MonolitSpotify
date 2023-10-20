@@ -1,10 +1,15 @@
 package com.example.MonolitSpotify.service;
 
 
+import com.example.MonolitSpotify.dto.request.SaveUserProfileRequestDto;
+import com.example.MonolitSpotify.dto.response.FindAllUserProfileResponseDto;
 import com.example.MonolitSpotify.repository.UserProfileRepository;
 import com.example.MonolitSpotify.repository.entity.UserProfile;
+import org.springframework.http.ResponseEntity;
+import org.springframework.jdbc.datasource.JdbcTransactionObjectSupport;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -52,11 +57,26 @@ public class UserProfileService {
      *
      */
 
+    public void save(SaveUserProfileRequestDto dto){
+        if(!(dto.getPassword().equals(dto.getRePassword()))) {
+            throw new RuntimeException("Şifreler Uyusmuyor");
+        }
+        repository.save(
+                UserProfile.builder().userName(dto.getUserName())
+                        .build()
+                );
+    }
+
     public void save(UserProfile userProfile){
         repository.save(userProfile);
+
     }
 
     public List<UserProfile> findAll(){
         return repository.findAll();
+    }
+
+    public List<FindAllUserProfileResponseDto> findAllUserProfile() {
+        return repository.findAllFromUserProfile();
     }
 }

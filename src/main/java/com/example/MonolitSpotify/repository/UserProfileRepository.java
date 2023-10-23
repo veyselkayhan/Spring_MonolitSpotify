@@ -193,8 +193,12 @@ public interface UserProfileRepository extends JpaRepository<UserProfile,Long> {
     @Query("SELECT u from UserProfile u where u.resimUrl IS null  and u.userName=?1")
     UserProfile egerkullanicininResmiYokIseVeAdiMuhammetIseBul(String UserName);
 
-    @Query("select new com.example.MonolitSpotify.dto.response.FindAllUserProfileResponseDto(u.id,u.userName,u.resimUrl) from UserProfile u")
-    List<FindAllUserProfileResponseDto>findAllFromUserProfile();
+    @Query("select new com.example.MonolitSpotify.repository.view.VwUserProfile(u.id,u.userName,u.resimUrl) from UserProfile u")
+    List<VwUserProfile>findAllFromUserProfileView();
+
+
+//    @Query("select new com.example.MonolitSpotify.dto.response.FindAllUserProfileResponseDto(u.id,u.userName,u.resimUrl) from UserProfile u")
+//    List<FindAllUserProfileResponseDto>findAllFromUserProfile();
 
 
 

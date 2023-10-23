@@ -3,6 +3,8 @@ package com.example.MonolitSpotify.service;
 
 import com.example.MonolitSpotify.dto.request.SaveUserProfileRequestDto;
 import com.example.MonolitSpotify.dto.response.FindAllUserProfileResponseDto;
+import com.example.MonolitSpotify.exception.ErrorType;
+import com.example.MonolitSpotify.exception.MonolitSpotifyException;
 import com.example.MonolitSpotify.repository.UserProfileRepository;
 import com.example.MonolitSpotify.repository.entity.UserProfile;
 import org.springframework.http.ResponseEntity;
@@ -59,7 +61,7 @@ public class UserProfileService {
 
     public void save(SaveUserProfileRequestDto dto){
         if(!(dto.getPassword().equals(dto.getRePassword()))) {
-            throw new RuntimeException("Şifreler Uyusmuyor");
+            throw new MonolitSpotifyException(ErrorType.SIFRE_UYUSMUYOR);
         }
         repository.save(
                 UserProfile.builder().userName(dto.getUserName())
@@ -76,7 +78,11 @@ public class UserProfileService {
         return repository.findAll();
     }
 
-    public List<FindAllUserProfileResponseDto> findAllUserProfile() {
-        return repository.findAllFromUserProfile();
+    public FindAllUserProfileResponseDto findAllUserProfile() {
+        return FindAllUserProfileResponseDto.builder()
+                .httpStatusCode(100)
+                .message("Listeler Başarılı bir şekilde çekildi")
+                .data(repository.findAllFromUserProfileView())
+                .build();
     }
 }

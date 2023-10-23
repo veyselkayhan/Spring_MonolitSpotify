@@ -1,6 +1,6 @@
 package com.example.MonolitSpotify.dto.response;
 
-import com.example.MonolitSpotify.repository.view.VwUserProfile;
+import com.example.MonolitSpotify.repository.entity.Muzik;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -14,11 +14,9 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class FindAllUserProfileResponseDto {
-    int httpStatusCode;
-    String message;
-    int currentPage;
-    boolean hasNext;
-    List<VwUserProfile> data;
 
+public class FindAllMuzikResponseDto {
+    int statusCode;
+    String message;
+    List<Muzik>data;
 }

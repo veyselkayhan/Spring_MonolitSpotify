@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "tbl_musik")
+@Table(name = "tbl_muzik")
 public class Muzik {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

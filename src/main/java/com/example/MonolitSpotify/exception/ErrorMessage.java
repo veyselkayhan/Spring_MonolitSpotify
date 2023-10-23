@@ -1,6 +1,5 @@
-package com.example.MonolitSpotify.dto.response;
+package com.example.MonolitSpotify.exception;
 
-import com.example.MonolitSpotify.repository.view.VwUserProfile;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -14,11 +13,14 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class FindAllUserProfileResponseDto {
-    int httpStatusCode;
+
+public class ErrorMessage {
+
+    int code;
+
     String message;
-    int currentPage;
-    boolean hasNext;
-    List<VwUserProfile> data;
+
+    List<String>fields;
+
 
 }

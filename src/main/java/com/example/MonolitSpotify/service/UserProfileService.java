@@ -73,7 +73,6 @@ public class UserProfileService {
         repository.save(userProfile);
 
     }
-
     public List<UserProfile> findAll(){
         return repository.findAll();
     }

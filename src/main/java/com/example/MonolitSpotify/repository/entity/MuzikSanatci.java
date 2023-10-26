@@ -15,11 +15,8 @@ import lombok.NoArgsConstructor;
 public class MuzikSanatci {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     Long id;
-
     Long sanatciId;
-
     Long muzikId;
 
 }

@@ -1,5 +1,6 @@
 package com.example.MonolitSpotify.service;
 
+import com.example.MonolitSpotify.dto.request.AddMusicForArtistRequestDto;
 import com.example.MonolitSpotify.dto.request.SaveMuzikRequestDto;
 import com.example.MonolitSpotify.dto.response.FindAllMuzikResponseDto;
 import com.example.MonolitSpotify.mapper.MuzikMapper;
@@ -16,7 +17,7 @@ public class MuzikService {
 
     private final MuzikRepository repository;
 
-    public void save(SaveMuzikRequestDto dto){
+    public void save(SaveMuzikRequestDto dto) {
 //        Muzik muzik= Muzik.builder()
 //                .muzikUrl(dto.getMuzikUrl())
 //                .aciklama(dto.getAciklama())
@@ -31,7 +32,7 @@ public class MuzikService {
 //        muzik.setName(dto.getName());
 
 
-        Muzik muzik= MuzikMapper.INSTANCE.muzikFromDto(dto);
+        Muzik muzik = MuzikMapper.INSTANCE.muzikFromDto(dto);
         muzik.setState(State.PENDING);
         repository.save(muzik);
 
@@ -46,5 +47,16 @@ public class MuzikService {
                 .message("Müzik Listesi Getirildi")
                 .data(repository.findAll())
                 .build();
+    }
+
+    /**
+     * TODO 1-Kullanıcı id mevcut mu bakılmalı
+     * TODO 2-Muzik id mevcut mu kontrol edilecek
+     * TODO 3-Kullanıcı id si verilen kisi sanatci mi?Kontrol edilecek?
+     * TODO 4-Eger aynı kullanici id ve müzik id daha önce kayit edilmisse tekrar kayit edilememelidir.
+     *
+     * @param dto
+     */
+    public void addMusicForArtist(AddMusicForArtistRequestDto dto) {
     }
 }

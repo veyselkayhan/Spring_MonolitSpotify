@@ -1,5 +1,6 @@
 package com.example.MonolitSpotify.dto.request;
 
+import com.example.MonolitSpotify.utility.enums.UserType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
@@ -19,8 +20,8 @@ public class SaveUserProfileRequestDto {
     @NotBlank(message = "Kullanıcı Adını Boş Gecemezsiniz")
     @Size(min = 3,max = 64)
     @Pattern(
-            regexp = "^(?=.*[0-9])(?=.*[a-z])(?=\\S+$).{3,}$",
-            message = "Kullanıcı Adı için Sadece kücük harf ve rakam girebilirsiniz"
+            regexp = "^(?=.*[a-z])(?=\\S+$).{3,}$",
+            message = "Kullanıcı Adı için Sadece kücük harf."
 
     )
     String userName;
@@ -33,4 +34,8 @@ public class SaveUserProfileRequestDto {
     )
     String password;
     String rePassword;
+    UserType userType;
+    String resimUrl;
+
+
 }

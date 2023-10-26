@@ -3,6 +3,7 @@ package com.example.MonolitSpotify.controller;
 import com.example.MonolitSpotify.constants.RestApi;
 import com.example.MonolitSpotify.dto.request.SaveUserProfileRequestDto;
 import com.example.MonolitSpotify.dto.response.FindAllUserProfileResponseDto;
+import com.example.MonolitSpotify.exception.ErrorMessage;
 import com.example.MonolitSpotify.repository.entity.UserProfile;
 import com.example.MonolitSpotify.service.UserProfileService;
 import jakarta.validation.Valid;
@@ -53,6 +54,17 @@ public class UserProfileController {
          */
         return ResponseEntity.ok(userProfileService.findAllUserProfile());
     }
+
+    @GetMapping("/testException")
+    public ResponseEntity<String> testException(String ifade){
+        if(ifade.length()<10){
+            throw new RuntimeException("girdiğiniz ifade 10 karakterden az olamaz");
+
+        }
+        return ResponseEntity.ok("Aferin Başarılı");
+    }
+
+
 
 
 }

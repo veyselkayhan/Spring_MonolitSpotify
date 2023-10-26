@@ -18,6 +18,8 @@ public class RestApi {
     public static final String FINDALL = "/findall";
     public static final String FINBYID = "/findbyid";
 
+    public static final String ADDMUSICFORARTIST="/addmusicforartist";
+
 
 
 }

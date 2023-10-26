@@ -22,17 +22,19 @@ public class UserProfile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
+    @Column(unique = true)
     String userName;
     String resimUrl;
+    String password;
+    String email;
     int followerCount;
     int followingCount;
     Long createAt;
     Long updateAt;
-
     @Enumerated(EnumType.STRING)
     UserType userType;
-
     State state;
+
 
 
 }

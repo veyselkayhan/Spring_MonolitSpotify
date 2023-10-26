@@ -2,6 +2,7 @@ package com.example.MonolitSpotify.controller;
 
 import static com.example.MonolitSpotify.constants.RestApi.*;
 
+import com.example.MonolitSpotify.dto.request.AddMusicForArtistRequestDto;
 import com.example.MonolitSpotify.dto.request.SaveMuzikRequestDto;
 import com.example.MonolitSpotify.dto.response.FindAllMuzikResponseDto;
 import com.example.MonolitSpotify.service.MuzikService;
@@ -26,4 +27,12 @@ public class MuzikController {
     public ResponseEntity<FindAllMuzikResponseDto>findAll(){
         return ResponseEntity.ok(muzikService.findAll());
     }
+    @PostMapping(ADDMUSICFORARTIST)
+    public ResponseEntity<Void>addMusicForArtist(@RequestBody @Valid AddMusicForArtistRequestDto dto){
+        muzikService.addMusicForArtist(dto);
+        return ResponseEntity.ok().build();
+
+    }
+
+
 }

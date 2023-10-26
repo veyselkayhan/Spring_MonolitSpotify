@@ -21,15 +21,11 @@ public class SaveMuzikRequestDto {
     @NotNull
     @NotBlank
     String name;
-
     String kapakResmi;
-
     @NotNull
     @NotBlank
     String tur;
-
     int sure;
-
     String aciklama;
 
 }

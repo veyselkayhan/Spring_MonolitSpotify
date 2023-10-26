@@ -200,6 +200,12 @@ public interface UserProfileRepository extends JpaRepository<UserProfile,Long> {
 //    @Query("select new com.example.MonolitSpotify.dto.response.FindAllUserProfileResponseDto(u.id,u.userName,u.resimUrl) from UserProfile u")
 //    List<FindAllUserProfileResponseDto>findAllFromUserProfile();
 
+    @Query("SELECT count(u)>0 from UserProfile u where u.userName=?1")
+    boolean buKullaniciAdiVarmi(String username);
+
+    boolean existsByUserName(String userName);
+
+    boolean existsByEmail(String email);
 
 
 

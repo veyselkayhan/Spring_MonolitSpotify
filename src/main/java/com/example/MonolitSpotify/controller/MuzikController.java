@@ -5,12 +5,15 @@ import static com.example.MonolitSpotify.constants.RestApi.*;
 import com.example.MonolitSpotify.dto.request.AddMusicForArtistRequestDto;
 import com.example.MonolitSpotify.dto.request.SaveMuzikRequestDto;
 import com.example.MonolitSpotify.dto.response.FindAllMuzikResponseDto;
+import com.example.MonolitSpotify.repository.entity.Muzik;
 import com.example.MonolitSpotify.service.MuzikService;
 import com.example.MonolitSpotify.service.MuzikTuruService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(Muzik)
@@ -32,6 +35,12 @@ public class MuzikController {
         muzikService.addMusicForArtist(dto);
         return ResponseEntity.ok().build();
 
+    }
+
+    @GetMapping("/getAllMusicFromArtistId({id}")
+    public ResponseEntity<List<Muzik>>getAllMusicFromArtistId(@PathVariable("id")Long id){
+        List<Muzik>result=muzikService.findAllMuzikFromArtistId(id);
+        return ResponseEntity.ok(result);
     }
 
 

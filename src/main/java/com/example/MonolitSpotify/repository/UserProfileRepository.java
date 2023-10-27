@@ -4,6 +4,7 @@ import com.example.MonolitSpotify.dto.response.FindAllUserProfileResponseDto;
 import com.example.MonolitSpotify.repository.entity.UserProfile;
 import com.example.MonolitSpotify.repository.view.VwUserProfile;
 import com.example.MonolitSpotify.utility.enums.State;
+import com.example.MonolitSpotify.utility.enums.UserType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -206,6 +207,11 @@ public interface UserProfileRepository extends JpaRepository<UserProfile,Long> {
     boolean existsByUserName(String userName);
 
     boolean existsByEmail(String email);
+
+    boolean existsByIdAndUserType(Long id, UserType userType);
+
+    @Query("select count(u)>0 from UserProfile u where u.id=?1 and u.userType=?2")
+    boolean boylebirartistvarmi(Long id,UserType userType);
 
 
 

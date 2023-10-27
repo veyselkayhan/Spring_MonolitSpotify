@@ -7,6 +7,7 @@ import com.example.MonolitSpotify.exception.ErrorType;
 import com.example.MonolitSpotify.exception.MonolitSpotifyException;
 import com.example.MonolitSpotify.repository.UserProfileRepository;
 import com.example.MonolitSpotify.repository.entity.UserProfile;
+import com.example.MonolitSpotify.utility.enums.UserType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.datasource.JdbcTransactionObjectSupport;
 import org.springframework.stereotype.Service;
@@ -93,5 +94,13 @@ public class UserProfileService {
                 .message("Listeler Başarılı bir şekilde çekildi")
                 .data(repository.findAllFromUserProfileView())
                 .build();
+    }
+
+    public boolean existById(Long artistId) {
+        return repository.existsById(artistId);
+    }
+
+    public boolean isArtist(Long ArtistId){
+        return repository.existsByIdAndUserType(ArtistId, UserType.ARTIST);
     }
 }
